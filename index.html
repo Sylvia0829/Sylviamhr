@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>怪物猎人崛起 技能中韩对照表 | 몬스터헌터 라이즈 스킬 중한대조표</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        tr:hover {
+            background-color: #f0f8ff;
+        }
+        .copyable {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>怪物猎人崛起 技能中韩对照表<br><span style="font-size: 0.9em; color: gray;">몬스터헌터 라이즈 스킬 중한대조표</span></h1>
+    <input type="text" id="searchBox" placeholder="输入中文或韩文技能名进行搜索 / 스킬명을 검색하세요">
+    <table>
+        <thead>
+            <tr><th>韩文技能名<br><span style="font-size:0.8em;color:gray;">스킬명 (한국어)</span></th>
+                <th>中文技能名<br><span style="font-size:0.8em;color:gray;">스킬명 (중국어)</span></th></tr>
+        </thead>
+        <tbody id="skillTable">
+            <tr><td class='copyable'>공격</td><td class='copyable'>攻击</td></tr>
+            <tr><td class='copyable'>도전자</td><td class='copyable'>挑战者</td></tr>
+            <tr><td class='copyable'>완전 충전</td><td class='copyable'>无伤</td></tr>
+            <tr><td class='copyable'>앙심</td><td class='copyable'>怨恨</td></tr>
+            <!-- 示例行，实际数据省略 -->
+        </tbody>
+    </table>
+
+    <script>
+        document.querySelectorAll(".copyable").forEach(el => {
+            el.addEventListener("touchstart", () => {
+                navigator.clipboard.writeText(el.textContent);
+                el.style.backgroundColor = "#dff0d8";
+            });
+        });
+        document.getElementById("searchBox").addEventListener("input", function() {
+            const keyword = this.value.toLowerCase();
+            const rows = document.querySelectorAll("#skillTable tr");
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(keyword) ? "" : "none";
+            });
+        });
+    </script>
+</body>
+</html>
